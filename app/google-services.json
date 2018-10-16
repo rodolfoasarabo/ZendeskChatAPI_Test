@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "747933894997",
+    "firebase_url": "https://zendesk-chat-test.firebaseio.com",
+    "project_id": "zendesk-chat-test",
+    "storage_bucket": "zendesk-chat-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747933894997:android:b4f4eaa835a83a9a",
+        "android_client_info": {
+          "package_name": "com.example.rodolfosarabo.testezendeskchatapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747933894997-vk0p3taf1uae6bdmoe41hheu2mrmcq52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmGaAoAVD1ZexibkaaCrkAYSe-vRp-3-4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
