@@ -22,8 +22,12 @@ class PreChatActivity : AppCompatActivity(), ChatListener {
         if (savedInstanceState != null) {
             return
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         val widgetWasActive: Boolean = stopService(Intent(this, ChatWidgetService::class.java))
+
         if (widgetWasActive) {
             resumeChat()
             return
@@ -43,11 +47,10 @@ class PreChatActivity : AppCompatActivity(), ChatListener {
             return
         }
 
-        run{
+        run {
             val visitorInfo = VisitorInfo.Builder()
                     .name("Rodolfo")
-                    .email("rodolfoasarabo@gmail.com").
-                    phoneNumber("15997354423").build()
+                    .email("rodolfoasarabo@gmail.com").phoneNumber("15997354423").build()
 
             ZopimChat.setVisitorInfo(visitorInfo)
 
@@ -63,9 +66,8 @@ class PreChatActivity : AppCompatActivity(), ChatListener {
 
     private fun resumeChat() {
         val manager = supportFragmentManager
-        if (manager.findFragmentByTag(ZopimChatFragment::class.java.name) == null){
+        if (manager.findFragmentByTag(ZopimChatFragment::class.java.name) == null) {
             val chatLogFragment = ZopimChatLogFragment()
-
             val transaction = manager.beginTransaction()
             transaction.add(com.zopim.android.sdk.R.id.chat_fragment_container, chatLogFragment, ZopimChatLogFragment::class.java.name)
             transaction.commit()
@@ -81,7 +83,7 @@ class PreChatActivity : AppCompatActivity(), ChatListener {
     }
 
     override fun onChatEnded() {
-        //TODO
+        finish()
     }
 
 }

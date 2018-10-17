@@ -3,16 +3,20 @@ package com.example.rodolfosarabo.testezendeskchatapi.firebase
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v4.app.NotificationCompat
+import android.support.v4.app.TaskStackBuilder
 import android.util.Log
+import com.example.rodolfosarabo.testezendeskchatapi.PreChatActivity
 import com.example.rodolfosarabo.testezendeskchatapi.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.zopim.android.sdk.api.ZopimChat
 import com.zopim.android.sdk.api.ZopimChatApi
+import com.zopim.android.sdk.embeddable.ChatActions
 import com.zopim.android.sdk.model.PushData
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -34,7 +38,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
-
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         Log.d(TAG, "Message Received")
@@ -44,8 +47,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             setAutoCancel(true)
         }
 
+        val intent = Intent(this, PreChatActivity::class.java)
 
+        intent.action = ChatActions.ACTION_RESUME_CHAT
 
+        val pendingIntent: PendingIntent? = TaskStackBuilder.create(this).run {
+            addNextIntentWithParentStack(intent)
+            getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        builder.setContentIntent(pendingIntent)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID,
                     NOTIFICATION_CHANNEL_NAME,
